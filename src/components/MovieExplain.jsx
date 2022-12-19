@@ -13,16 +13,16 @@ const MovieExplain = ({ item, videoId }) => {
 							src={`https://image.tmdb.org/t/p/original${item.poster_path}`}
 						/>
 					</Col>
-					<Col>
+					<Col className="explainBadge">
 						{item.genres?.map((item) => (
-							<Badge bg="danger" key={item.id}>
+							<Badge bg="light" text="dark" key={item.id}>
 								{item.name}
 							</Badge>
 						))}
 
-						<h1>{item.title}</h1>
+						<h1 className="explainTitle">{item.title}</h1>
 						<p>{item.tagline}</p>
-						<div>
+						<div className="explainInfo">
 							<span className="star">⭐ {item.vote_average}</span>
 							<span>👥 {item.popularity} </span>
 							<span className={item.adult ? "r-rated" : "g-rated"}>

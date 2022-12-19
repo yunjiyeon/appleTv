@@ -11,7 +11,9 @@ const Banner = ({ movie }) => {
 		>
 			<div className="banner-info">
 				<h1>{movie.title}</h1>
-				<p>{movie.overview}</p>
+				<p className="movieInfo">{movie.overview}</p>
+        <button>지금 보러가기</button>
+        <p className="appInfo"><img src="../appleicon.png" alt="" />앱에서 시청 가능</p>
 			</div>
 		</div>
 	);

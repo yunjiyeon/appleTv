@@ -1,6 +1,7 @@
 import React from "react";
 import { Button, Container, Form, Nav, Navbar } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { BiSearch } from 'react-icons/bi';
 
 const Navigation = () => {
 	return (
@@ -8,7 +9,7 @@ const Navigation = () => {
 			<Container fluid>
 				<Navbar.Brand>
 					<Link to="/">
-						<img width={90} src="/Logonetflix.png" alt="logo" />
+						<img className="logo" width={50} src="/logoappletv.png" alt="logo" />
 					</Link>
 				</Navbar.Brand>
 				<Navbar.Toggle aria-controls="navbarScroll" />
@@ -38,8 +39,13 @@ const Navigation = () => {
 							className="me-2"
 							aria-label="Search"
 						/>
-						<Button variant="outline-danger">Search</Button>
-					</Form>
+						<Button variant="dark" className='searchBtn'><BiSearch/></Button>
+          </Form>
+          <Nav>
+            <Link to="#" className='nav-item'>Kids</Link>
+            <Link to="#" className='nav-item'>Login
+            </Link>
+          </Nav>
 				</Navbar.Collapse>
 			</Container>
 		</Navbar>
