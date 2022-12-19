@@ -9,11 +9,9 @@ const Banner = ({ movie }) => {
 				backgroundImage: `url(https://www.themoviedb.org/t/p/w1920_and_h800_multi_faces/${movie.backdrop_path})`,
 			}}
 		>
-			<div className="bannerInfo">
+			<div className="banner-info">
 				<h1>{movie.title}</h1>
-				<p className="movieInfo">{movie.overview}</p>
-        <button>지금 보러가기</button>
-        <p className="appInfo"><img src="../appleicon.png" alt="" />앱에서 시청 가능</p>
+				<p>{movie.overview}</p>
 			</div>
 		</div>
 	);

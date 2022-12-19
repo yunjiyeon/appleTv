@@ -27,7 +27,7 @@ const MovieCard = ({ item }) => {
 				<h5>{item.title}</h5>
 				<p>
 					{item.genre_ids.map((id) => (
-						<Badge bg="dark" key={id}>
+						<Badge bg="danger" key={id}>
 							{genreList.find((item) => item.id === id)?.name}
 						</Badge>
 					))}

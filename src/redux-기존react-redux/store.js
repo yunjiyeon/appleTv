@@ -1,4 +1,4 @@
-import { legacy_createStore as createStore, applyMiddleware } from "redux";
+import { createStore, applyMiddleware } from "redux";
 //createStore가로줄 redux toolkit사용 유도를 위해
 import rootReducer from "./reducers";
 
