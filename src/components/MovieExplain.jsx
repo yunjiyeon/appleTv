@@ -4,7 +4,7 @@ import Trailer from "./Trailer";
 
 const MovieExplain = ({ item, videoId }) => {
 	return (
-		<div>
+		<div className='explainContainer'>
 			<Container>
 				<Row>
 					<Col>
@@ -15,7 +15,7 @@ const MovieExplain = ({ item, videoId }) => {
 					</Col>
 					<Col>
 						{item.genres?.map((item) => (
-							<Badge bg="danger" key={item.id}>
+							<Badge bg="light" text="dark" key={item.id}>
 								{item.name}
 							</Badge>
 						))}
@@ -24,7 +24,7 @@ const MovieExplain = ({ item, videoId }) => {
 						<p>{item.tagline}</p>
 						<div>
 							<span className="star">⭐ {item.vote_average}</span>
-							<span>👥 {item.popularity} </span>
+							<span className='popularity'>👥 {item.popularity} </span>
 							<span className={item.adult ? "r-rated" : "g-rated"}>
 								{item.adult ? "🔺 R-rated" : "✔️ G-rated"}
 							</span>
