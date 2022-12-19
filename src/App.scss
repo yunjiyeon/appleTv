@@ -80,7 +80,9 @@ body {
 		size: cover;
 		repeat: no-repeat;
 	}
-
+  @media #{$smallWidth} {
+    align-items: flex-end;
+  }
 	&::before {
 		position: absolute;
 		content: "";
