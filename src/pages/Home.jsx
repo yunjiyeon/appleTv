@@ -36,14 +36,7 @@ const Home = () => {
 		<div>
 			{popularMovies.results && <Banner movie={popularMovies.results[0]} />}
 
-			<div className="slide-container">
-				<h2>Popular Movie</h2>
-				<MovieSlide movie={popularMovies} />
-				<h2>Top Rated Movie</h2>
-				<MovieSlide movie={topRatedMovies} />
-				<h2>Upcoming Movie</h2>
-				<MovieSlide movie={upcomingMovies} />
-			</div>
+
 		</div>
 	);
 };
