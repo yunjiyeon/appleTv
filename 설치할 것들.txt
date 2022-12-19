@@ -47,3 +47,8 @@ $ yarn add axios
 === react youtube ===
 https://www.npmjs.com/package/react-youtube
 $ yarn add react-youtube
+
+
+
+=== reduex toolkit ===
+yarn add @reduxjs/toolkit

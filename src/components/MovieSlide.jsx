@@ -9,7 +9,7 @@ import MovieCard from "./MovieCard";
 const responsive = {
 	superLargeDesktop: {
 		breakpoint: { max: 4000, min: 1400 },
-		items: 5,
+		items: 4,
 	},
 	desktop: {
 		breakpoint: { max: 1400, min: 1024 },
@@ -31,8 +31,8 @@ const MovieSlide = ({ movie }) => {
 		<div>
 			<Carousel responsive={responsive}>
 				{movie.results.map((item) => (
-					<div className="card-wrap">
-						<MovieCard key={item.id} item={item} />
+					<div className="card-wrap" key={item.id}>
+						<MovieCard item={item} />
 					</div>
 				))}
 			</Carousel>

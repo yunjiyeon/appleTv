@@ -7,8 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { movieAction } from "../redux/action/movieAction";
 import Banner from "../components/Banner";
 import MovieSlide from "../components/MovieSlide";
-import ClipLoader from "react-spinners/ClipLoader";
-import Footer from "../components/Footer";
+import MoonLoader from "react-spinners/MoonLoader";
 
 const Home = () => {
 	const dispatch = useDispatch();
@@ -28,14 +27,14 @@ const Home = () => {
 	if (loading) {
 		return (
 			<div className="loader-container">
-        <ClipLoader color='white' loading={loading}size={150}/>
+				<MoonLoader color="white" loading={loading} size={150} />
 			</div>
 		);
 	}
 
 	return (
 		<div>
-			{popularMovies.results && <Banner movie={popularMovies.results[11]} />}
+			{popularMovies.results && <Banner movie={popularMovies.results[0]} />}
 
 			<div className="slide-container">
 				<h2>Popular Movie</h2>
@@ -45,8 +44,6 @@ const Home = () => {
 				<h2>Upcoming Movie</h2>
 				<MovieSlide movie={upcomingMovies} />
 			</div>
-
-			<Footer />
 		</div>
 	);
 };
