@@ -9,7 +9,7 @@ import MovieCard from "./MovieCard";
 const responsive = {
 	superLargeDesktop: {
 		breakpoint: { max: 4000, min: 1400 },
-		items: 4,
+		items: 5,
 	},
 	desktop: {
 		breakpoint: { max: 1400, min: 1024 },
