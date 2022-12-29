@@ -1,9 +1,9 @@
 # MINI PROJECT | Apple TV+
 > React 기반 영화 소개 사이트
 <br>
+
 * 기여도 : 개인 100% <br> 
 * 기간 : 2022.11
-<br>
 
 ## 📍 Overview
 
