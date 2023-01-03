@@ -30,7 +30,7 @@ const MovieDetail = () => {
 			<MovieExplain item={detailMovies} videoId={trailerVideo} />
 			<br />
 			<br />
-			<h1>영화 리뷰들 넣을곳!!</h1>
+			<h1>review</h1>
 		</div>
 	);
 };

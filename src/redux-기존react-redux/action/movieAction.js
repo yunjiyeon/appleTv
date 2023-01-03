@@ -30,6 +30,9 @@ function getMovies() {
 				`/genre/movie/list?api_key=${APIkey}&language=en-US`,
 			);
 
+      const searchApi = await api.get (
+        `/search/movie?api_key=${APIkey}&language=en-US&page=1&include_adult=false`
+      )
 			//let data =  await Promise.all([popularMovieApi,topRatedMovieApi,upcomingMovieApi,]);
 			//console.log("data는? ", data);
 
