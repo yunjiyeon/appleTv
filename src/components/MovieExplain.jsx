@@ -22,7 +22,7 @@ const MovieExplain = ({ item, videoId }) => {
           <Col className="explainBadge">
             {item.genres?.map((item) => (
               <Badge
-                className="detaileBadge"
+                className="detailBadge"
                 bg="light"
                 text="dark"
                 key={item.id}

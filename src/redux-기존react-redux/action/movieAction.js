@@ -12,88 +12,92 @@ const APIkey = process.env.REACT_APP_APIKEY;
 
 //영화 데이터 가져오기
 function getMovies() {
-	return async (dispatch) => {
-		try {
-			dispatch({ type: "GET_MOVIE_REQUST" }); //로딩전 던져줌
+  return async (dispatch) => {
+    try {
+      dispatch({ type: "GET_MOVIE_REQUST" }); //로딩전 던져줌
 
-			const popularMovieApi = await api.get(
-				`/movie/popular?api_key=${APIkey}&language=en-US&page=1`,
-			);
-			const topRatedMovieApi = await api.get(
-				`/movie/top_rated?api_key=${APIkey}&language=en-US&page=1`,
-			);
-			const upcomingMovieApi = await api.get(
-				`/movie/upcoming?api_key=${APIkey}&language=en-US&page=1`,
-			);
-			//장르도 같이 가져옴
-			const genreApi = await api.get(
-				`/genre/movie/list?api_key=${APIkey}&language=en-US`,
-			);
+      const popularMovieApi = await api.get(
+        `/movie/popular?api_key=${APIkey}&language=en-US&page=1`,
+      );
+      const topRatedMovieApi = await api.get(
+        `/movie/top_rated?api_key=${APIkey}&language=en-US&page=1`,
+      );
+      const upcomingMovieApi = await api.get(
+        `/movie/upcoming?api_key=${APIkey}&language=en-US&page=1`,
+      );
+      //장르도 같이 가져옴
+      const genreApi = await api.get(
+        `/genre/movie/list?api_key=${APIkey}&language=en-US`,
+      );
 
-      const searchApi = await api.get (
-        `/search/movie?api_key=${APIkey}&language=en-US&page=1&include_adult=false`
-      )
-			//let data =  await Promise.all([popularMovieApi,topRatedMovieApi,upcomingMovieApi,]);
-			//console.log("data는? ", data);
+      const similarApi = await api.get(
+        `/movie/{movie_id}/similar?api_key=${APIkey}&language=en-US&page=1`,
+      );
+      const searchApi = await api.get(
+        `/search/movie?api_key=${APIkey}&language=en-US&page=1&include_adult=false`,
+      );
+      //let data =  await Promise.all([popularMovieApi,topRatedMovieApi,upcomingMovieApi,]);
+      //console.log("data는? ", data);
 
-			//따로 받아옴
-			let [popularMovies, topRatedMovies, upcomingMovies, genreList] =
-				await Promise.all([
-					popularMovieApi,
-					topRatedMovieApi,
-					upcomingMovieApi,
-					genreApi,
-				]);
-			//console.log("popularMovie data는? ", popularMovies);
-			//console.log("topRatedMovie data는? ", topRatedMovies);
-			//console.log("upcomingMovie data는? ", upcomingMovies);
-			console.log("genreList data는? ", genreList);
-
-			//데이터 도착후
-			dispatch({
-				type: "GET_MOVIE_SUCCESS",
-				payload: {
-					popularMovies: popularMovies.data,
-					topRatedMovies: topRatedMovies.data,
-					upcomingMovies: upcomingMovies.data,
-					genreList: genreList.data.genres,
-				}, //data필드만 보내줌. Axios는 받은 데이터를 data 필드에 넣어서 줌
-			});
-		} catch (error) {
-			//에러 핸들링
-			dispatch({ type: "GET_MOVIE_FAIL" });
-		}
-	};
+      //따로 받아옴
+      let [popularMovies, topRatedMovies, upcomingMovies, genreList, similar] =
+        await Promise.all([
+          popularMovieApi,
+          topRatedMovieApi,
+          upcomingMovieApi,
+          genreApi,
+          similarApi,
+        ]);
+      //console.log("popularMovie data는? ", popularMovies);
+      //console.log("topRatedMovie data는? ", topRatedMovies);
+      //console.log("upcomingMovie data는? ", upcomingMovies);
+      console.log("genreList data는? ", genreList);
+      console.log("simiar는?", similar);
+      //데이터 도착후
+      dispatch({
+        type: "GET_MOVIE_SUCCESS",
+        payload: {
+          popularMovies: popularMovies.data,
+          topRatedMovies: topRatedMovies.data,
+          upcomingMovies: upcomingMovies.data,
+          genreList: genreList.data.genres,
+        }, //data필드만 보내줌. Axios는 받은 데이터를 data 필드에 넣어서 줌
+      });
+    } catch (error) {
+      //에러 핸들링
+      dispatch({ type: "GET_MOVIE_FAIL" });
+    }
+  };
 }
 
 //디테일 데이터 가져오기
 function getDetailMovies(id) {
-	return async (dispatch) => {
-		try {
-			dispatch({ type: "GET_D_MOVIE_REQUST" });
-			const detailMovieApi = await api.get(
-				`/movie/${id}?api_key=${APIkey}&language=en-US`,
-			);
-			const trailerVideoApi = await api.get(
-				`/movie/${id}/videos?api_key=${APIkey}&language=en-US`,
-			);
+  return async (dispatch) => {
+    try {
+      dispatch({ type: "GET_D_MOVIE_REQUST" });
+      const detailMovieApi = await api.get(
+        `/movie/${id}?api_key=${APIkey}&language=en-US`,
+      );
+      const trailerVideoApi = await api.get(
+        `/movie/${id}/videos?api_key=${APIkey}&language=en-US`,
+      );
 
-			let [detailMovies, trailerVideo] = await Promise.all([
-				detailMovieApi,
-				trailerVideoApi,
-			]);
-			console.log("trailerVideo의 data는?  ", trailerVideo);
-			dispatch({
-				type: "GET_D_MOVIE_SUCCESS",
-				payload: {
-					detailMovies: detailMovies.data,
-					trailerVideo: trailerVideo.data,
-				},
-			});
-		} catch (error) {
-			dispatch({ type: "GET_D_MOVIE_FAIL" });
-		}
-	};
+      let [detailMovies, trailerVideo] = await Promise.all([
+        detailMovieApi,
+        trailerVideoApi,
+      ]);
+      console.log("trailerVideo의 data는?  ", trailerVideo);
+      dispatch({
+        type: "GET_D_MOVIE_SUCCESS",
+        payload: {
+          detailMovies: detailMovies.data,
+          trailerVideo: trailerVideo.data,
+        },
+      });
+    } catch (error) {
+      dispatch({ type: "GET_D_MOVIE_FAIL" });
+    }
+  };
 }
 
 export const movieAction = { getMovies, getDetailMovies };
